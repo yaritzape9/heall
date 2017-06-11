@@ -24,18 +24,17 @@ class MessagesController < ApplicationController
     redirect_to volunteer_girl_messages_path
   end
 
-  def main_talk
-    current_volunteer_user = Volunteer.find(params[:volunteer_id])
-    render fake_talk
+  def fake_talk
+    @message = Message.new
+    render layout: false
   end
 
   def redirect_to_talk
     if current_girl_user.keyword == params[:message]
-      redirect_to "/volunteers/#{current_volunteer_user}/girls/#{current_girl_user}/messages"
+      redirect_to "/"
     else
       redirect_to conversation_path
     end
-    #if you write the special password, you can go; otherwise, you are redirected to the weird normal talk
   end
 
   private
