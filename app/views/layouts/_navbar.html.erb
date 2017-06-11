@@ -1,0 +1,52 @@
+<% if current_girl_user  || current_volunteer_user  %>
+  <div class = "nav.navbar.navbar-default">
+      <div id = "bs-example-navbar-collapse-1.collapse.navbar-collapse">
+         <ul class = "nav navbar-nav">
+            <li>
+             <%= link_to "Logout", :controller => 'sessions', :action => 'destroy' %>
+            <span class = "sr-only">
+               <!-- | (current) -->
+            </li>
+            <li>
+            <% if current_girl_user %>
+              <%= link_to "Profile", "/girls/#{current_girl_user.id}" %>
+            <% end %>
+            <% if current_volunteer_user %>
+              <%= link_to "Profile", "/volunteers/#{current_volunteer_user.id}" %>
+            <% end %>
+            <span class = "sr-only">
+               <!-- | (current) -->
+            </li>
+            <li>
+            <%= link_to "Home",  "/" %>
+            <span class = "sr-only">
+               <!-- | (current) -->
+           </li>
+        </ul>
+      </div>
+    </div>
+<% else %>
+   <div class = "nav navbar navbar-default">
+      <div id = "bs-example-navbar-collapse-1 collapse navbar-collapse">
+         <ul class = "nav navbar-nav">
+            <li>
+            <%= link_to "Login  ", :controller => 'sessions', :action => 'new' %>
+            <span class = "sr-only">
+               <!-- | (current) -->
+            </li>
+            <li>
+            <%= link_to "  Register as Girl",  "/girls/new" %>
+            <span class = "sr-only">
+               <!-- | (current) -->
+            </li>
+            <li>
+            <%= link_to "  Register as Volunteer",  "/volunteers/new" %>
+            <span class = "sr-only">
+               <!-- | (current) -->
+            </li>
+            <li>
+            <%= link_to "Home", "/" %>
+            <span class = "sr-only">
+               <!-- | (current) -->
+            </li>
+<% end %>

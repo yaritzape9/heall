@@ -25,6 +25,13 @@ module SessionsHelper
     session[:volunteer_id] = volunteer.id
   end
 
+  def logged_in?
+    if current_girl_user == nil || current_volunteer_user == nil
+      return false
+    end
+    return true
+  end
+
   def logout
     session.clear
   end
