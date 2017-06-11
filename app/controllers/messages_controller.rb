@@ -7,27 +7,36 @@ class MessagesController < ApplicationController
 
   def create
     p "*" * 30
-    new_message = Message.create(girl_id: params[:girl_id], volunteer_id: params[:volunteer_id], message:params[:message])
-
-    respond_to do |format|
-      format.html {redirect_to volunteer_girl_messages_path}
-      format.js { }
+    if @type_user == "volunteer"
+      volunteer_owner = true
+    else
+      volunteer_owner = false
     end
+    new_message = Message.create(girl_id: params[:girl_id], volunteer_id: params[:volunteer_id], message:params[:message], volunteer_owner:volunteer_owner)
+    #
+    # respond_to do |format|
+    #   format.html {redirect_to volunteer_girl_messages_path}
+    #   format.js { }
+    # end
+    redirect_to volunteer_girl_messages_path
   end
 
   private
 
   def get_messages
     hashed_message = {}
+    i = 0
     @girl = Girl.find(params[:girl_id])
     @volunteer = Volunteer.find(params[:volunteer_id])
     messages = Message.where(girl: @girl, volunteer: @volunteer)
+    p "THE MESSAGES"
     messages.each do |message|
+      i += 1
       if @type_user == "volunteer"
         if message.volunteer_owner == true
           hashed_message[message.message] = @volunteer.username
         else
-          EasyTranslate.api_key = ENV['TRANSLATION_API']
+          EasyTranslate.api_key = "AIzaSyC1nqeNF7szd4mPbBabhAW9TkdtnUrctac"
           languages = {
             'english' => 'en',
             'spanish' => 'spa',
@@ -39,6 +48,7 @@ class MessagesController < ApplicationController
           detect = languages[@girl.language]
           body = message.message
           if(@volunteer.language != @girl.language)
+            p hashed_message
             body_message = EasyTranslate.translate("#{body}", from: "#{detect}", to: "#{base_language}")
             hashed_message[body_message] = @girl.username
           else
@@ -49,7 +59,7 @@ class MessagesController < ApplicationController
         if message.volunteer_owner == false
           hashed_message[message.message] = @girl.username
         else
-          EasyTranslate.api_key = ENV['TRANSLATION_API']
+          EasyTranslate.api_key = "AIzaSyC1nqeNF7szd4mPbBabhAW9TkdtnUrctac"
           languages = {
             'english' => 'en',
             'spanish' => 'spa',
@@ -65,10 +75,9 @@ class MessagesController < ApplicationController
           else
             hashed_message[message.message] = @volunteer.username
           end
+        end
       end
     end
-    p hashed_message
     return hashed_message
   end
-end
 end

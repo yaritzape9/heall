@@ -5,23 +5,6 @@ class VolunteersController < ApplicationController
 
   def show
     @volunteer = Volunteer.find(current_volunteer_user.id)
-    # EasyTranslate.api_key = ENV['TRANSLATION_API']
-    # languages = {
-    #   'english' => 'en',
-    #   'spanish' => 'spa',
-    #   'portuguese' => 'pt',
-    #   'arabic' => 'ar'
-    # }
-    #
-    # base_language = languages[@volunteer.language]
-    # detect = languages[current_girl_user.language]
-    # # detect = EasyTranslate.detect "Hola Como Estas"
-    # body = Message.where(girl: current_girl_user, volunteer: @volunteer)
-    # p body
-    # if(@volunteer.language != current_girl_user.language)
-    #   p EasyTranslate.translate("#{body}", from: "#{detect}", to: "#{base_language}")
-    # end
-
   end
 
   def new
