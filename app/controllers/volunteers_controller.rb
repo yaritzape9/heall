@@ -4,22 +4,23 @@ class VolunteersController < ApplicationController
   end
 
   def show
-    EasyTranslate.api_key = ENV['TRANSLATION_API']
-    languages = {
-      'english' => 'en',
-      'spanish' => 'spa',
-      'portuguese' => 'pt',
-      'arabic' => 'ar'
-    }
     @volunteer = Volunteer.find(current_volunteer_user.id)
-
-    base_language = languages[@volunteer.language]
-    detect = languages[current_girl_user.language]
-    # detect = EasyTranslate.detect "Hola Como Estas"
-
-    if(@volunteer.language != current_girl_user.language)
-      EasyTranslate.translate("this is english", from: "#{detect}", to: "#{base_language}")
-    end
+    # EasyTranslate.api_key = ENV['TRANSLATION_API']
+    # languages = {
+    #   'english' => 'en',
+    #   'spanish' => 'spa',
+    #   'portuguese' => 'pt',
+    #   'arabic' => 'ar'
+    # }
+    #
+    # base_language = languages[@volunteer.language]
+    # detect = languages[current_girl_user.language]
+    # # detect = EasyTranslate.detect "Hola Como Estas"
+    # body = Message.where(girl: current_girl_user, volunteer: @volunteer)
+    # p body
+    # if(@volunteer.language != current_girl_user.language)
+    #   p EasyTranslate.translate("#{body}", from: "#{detect}", to: "#{base_language}")
+    # end
 
   end
 
@@ -30,6 +31,7 @@ class VolunteersController < ApplicationController
   def create
     @volunteer = Volunteer.new(volunteer_params)
       if @volunteer.save
+        volunteer?("volunteer")
         log_in_volunteer @volunteer
         redirect_to "/volunteers/#{@volunteer.id}"
       else

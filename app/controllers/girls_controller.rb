@@ -7,6 +7,7 @@ class GirlsController < ApplicationController
   def create
     @girl = Girl.new(girl_params)
       if @girl.save
+        volunteer?("girl")
         log_in_girl @girl
         redirect_to "/girls/#{@girl.id}"
       else
@@ -24,6 +25,7 @@ class GirlsController < ApplicationController
         'arabic' => 'ar'
       }
       @girl = Girl.find(current_girl_user.id)
+      body = Message.where(girl:@girl, volunteer: current_volunteer_user)
 
       base_language = languages[@girl.language]
       detect = languages[current_volunteer_user.language]
@@ -31,7 +33,7 @@ class GirlsController < ApplicationController
       # sent_langauge = EasyTranslate::LANGUAGES[detect]
 
       if(@girl.language.downcase != current_volunteer_user.language)
-        EasyTranslate.translate("Hola", from: "#{detect}", to: "#{base_language}")
+        p EasyTranslate.translate("#{body}", from: "#{detect}", to: "#{base_language}")
       end
     end
 
