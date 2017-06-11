@@ -15,3 +15,18 @@
 //= require rails-ujs
 //= require turbolinks
 //= require_tree .
+
+
+$(document).on('keypress', '#chat-speak', function(event){
+  if (event.keyCode === 13){
+    event.preventDefault()
+    App.chat.speak(event.target.value)
+    $.ajax({
+      method: "POST"
+      url: $("#path").html(),
+      data: {message: event.target.value} ,
+      async: true,
+      dataType: 'script'
+    });
+  }
+})
