@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   end
 
   mount ActionCable.server => '/cable'
+  post '/new-heally', to: 'girls#new_heally'
 
   get '/login', to: 'sessions#new', as: 'login'
   post '/login', to: 'sessions#create'
