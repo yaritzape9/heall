@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   root to:'index'
 
   resources :girls, except: :index
-  resources :volunteers,  except: :index
+  resources :volunteers, except: :index
 
 
   get '/login', to: 'sessions#new', as: 'login'
