@@ -83,7 +83,7 @@ GEM
       resource_accessor (~> 1.2)
       thor (~> 0.19)
     i18n (0.8.4)
-    iso_country_codes (0.7.7)
+    iso-639 (0.2.8)
     jbuilder (2.7.0)
       activesupport (>= 4.2.0)
       multi_json (>= 1.2)
@@ -212,7 +212,7 @@ DEPENDENCIES
   dotenv-rails
   easy_translate
   google-translate
-  iso_country_codes
+  iso-639
   jbuilder (~> 2.5)
   jquery-rails
   listen (>= 3.0.5, < 3.2)
