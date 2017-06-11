@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
   resources :girls, except: :index
 
-  resources :volunteers, except: :index
+  resources :volunteers
 
   get '/login', to: 'sessions#new', as: 'login'
   post '/login', to: 'sessions#create'
