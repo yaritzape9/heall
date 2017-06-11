@@ -13,7 +13,9 @@
  *= require_tree .
  *= require_self
  */
-
+body{
+  background-color: #FF4F98;
+}
  h1, p {
 
    font-family: 'Bungee Inline', cursive;
