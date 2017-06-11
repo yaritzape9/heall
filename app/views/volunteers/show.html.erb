@@ -1,4 +1,9 @@
-Hello, <%= @volunteer.username %>.
+
+<h2 style="color:white;display:inline-block;margin: 25px;"> Welcome <%= @volunteer.username %></h2>
+<label style="display:inline-block; padding-top:5px;margin-top: 20px;float:right;" class="switch">
+  <input type="checkbox">
+  <div class="slider round"></div>
+</label>
 
 <% @volunteer.girls.each do |girl| %>
   <% if  Message.where(girl_id: girl.id, volunteer_id: @volunteer.id).last && Message.where(girl_id: girl.id, volunteer_id: @volunteer.id).last.created_at%>

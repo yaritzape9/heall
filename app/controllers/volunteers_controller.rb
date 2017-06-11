@@ -5,6 +5,16 @@ class VolunteersController < ApplicationController
 
   def show
     @volunteer = Volunteer.find(current_volunteer_user.id)
+    # EasyTranslate.translate('Hola, mundo', :from => :spanish, :to => :en) # => "Hello, world"
+    detect = EasyTranslate.detect "Hola Como Estas"
+    sent_langauge = EasyTranslate::LANGUAGES[detect]
+
+    # if(sent_langauge == @volunteer.language.downcase)
+    #   p "They are the same"
+    # else
+    #   # EasyTranslate.translate("#{bodytext}"), from: "#{sent_langauge}", to: "#{@volunteer.language.downcase}"
+    #   p "they are not the same"
+    # end
   end
 
   def new
