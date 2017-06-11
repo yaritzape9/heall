@@ -6,7 +6,6 @@ class SessionsController < ApplicationController
   def create
 
     girl = Girl.find_by(username: params[:session][:name])
-    p girl
     volunteer = Volunteer.find_by(username: params[:session][:name])
     if volunteer
       if volunteer.authenticate(params[:session][:password])
