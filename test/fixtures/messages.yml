@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  girl: one
+  volunteer: one
+  message: MyString
+  speaker: 1
+
+two:
+  girl: two
+  volunteer: two
+  message: MyString
+  speaker: 1
