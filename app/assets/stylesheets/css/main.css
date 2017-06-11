@@ -28,6 +28,10 @@
  	color: white;
 	}
 
+	#background-masked {
+		background-color: pink; 
+	}
+
 	ol, ul {
 		list-style: none;
 	}
