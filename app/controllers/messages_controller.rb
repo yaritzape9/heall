@@ -1,5 +1,7 @@
 class MessagesController < ApplicationController
   def index
+    @girl = Girl.find(params[:girl_id])
+    @volunteer = Volunteer.find(params[:volunteer_id])
     @message = Message.new
     @type_user = session[:type]
     @all_messages = get_messages
@@ -19,6 +21,14 @@ class MessagesController < ApplicationController
     #   format.js { }
     # end
     redirect_to volunteer_girl_messages_path
+  end
+
+  def main_talk
+    # get page of fake talk
+  end
+
+  def redirect_to_talk
+    #if you write the special password, you can go; otherwise, you are redirected to the weird normal talk
   end
 
   private

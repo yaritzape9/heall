@@ -17,30 +17,24 @@ class GirlsController < ApplicationController
     end
 
     def show
-      EasyTranslate.api_key = ENV['TRANSLATION_API']
-      languages = {
-        'english' => 'en',
-        'spanish' => 'spa',
-        'portuguese' => 'pt',
-        'arabic' => 'ar'
-      }
       @girl = Girl.find(current_girl_user.id)
-      body = Message.where(girl:@girl, volunteer: current_volunteer_user)
+    end
 
-      base_language = languages[@girl.language]
-      detect = languages[current_volunteer_user.language]
-      # detect = EasyTranslate.detect "Hola Como Estas"
-      # sent_langauge = EasyTranslate::LANGUAGES[detect]
-
-      if(@girl.language.downcase != current_volunteer_user.language)
-        p EasyTranslate.translate("#{body}", from: "#{detect}", to: "#{base_language}")
-      end
+    def new_heally
+      match = find_volunteer(params[:expertise])
+      @girl = Girl.find(current_girl_user.id)
+      GirlVolunteer.create(girl_id: @girl.id, volunteer_id: match.volunteer_id)
+      redirect_to "/volunteers/#{match.volunteer_id}/girls/#{@girl.id}/messages"
     end
 
     private
 
     def girl_params
        params.require(:girl).permit(:username, :age, :language, :keyword, :password)
+    end
+
+    def find_volunteer(expertise)
+      VolunteerExpertise.where(expertise: Expertise.find_by(name: expertise)).first
     end
 
 end

@@ -1,1 +1,29 @@
-<%= @girl.username %>
+Hey <%= @girl.username %>!
+:)
+
+<% @girl.volunteers.each do |volunteer| %>
+  <% if Message.where(girl_id: @girl.id, volunteer_id: volunteer.id).last %>
+    <p><a href="/volunteers/<%=volunteer.id%>/girls/<%=@girl.id%>/messages">Talk to <%= volunteer.username %></a>, focused on <%= volunteer.expertises.first.name %> and <%= volunteer.expertises.last.name %></a>
+      <% if (Message.where(girl_id: @girl.id, volunteer_id: volunteer.id).last.created_at) %>
+        <small>Last talk at <%= Message.where(girl_id: @girl.id, volunteer_id: volunteer.id).last.created_at %>
+        </small>
+      <% end %>
+  <% end %>
+<% end %>
+
+
+<h5> Need more help? </h5>
+
+
+
+<form action="/new-heally" method="POST">
+  <select name="expertise">
+    <option value="Pregnancy Prevention" name="Pregnancy Prevention">Pregnancy Prevention</option>
+    <option value="STDs" name="STDs">STDs</option>
+    <option value="Pregnant" name="Pregnant">Pregnant</option>
+    <option value="Puberty" name="Puberty">Puberty</option>
+    <option value="Rape Prevention" name="Rape Prevention">Rape Prevention</option>
+    <option value="Mental Health" name="Mental Health">Mental Health</option>
+  </select>
+  <button type="submit">Find your next Ally</button>
+</form>
