@@ -15,7 +15,7 @@ Rails.application.routes.draw do
   mount ActionCable.server => '/cable'
   post '/new-heally', to: 'girls#new_heally'
 
-  get '/login', to: 'sessions#new', as: 'login'
-  post '/login', to: 'sessions#create'
-  get '/logout', to: 'sessions#delete', as: 'logout'
+  get    'login'   => 'sessions#new'
+  post   'login'   => 'sessions#create'
+  get 'logout'  => 'sessions#destroy'
 end
