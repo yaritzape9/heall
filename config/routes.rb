@@ -3,8 +3,8 @@ Rails.application.routes.draw do
   root 'volunteers#index'
 
   resources :girls, except: :index
-  resources :volunteers
 
+  resources :volunteers, except: :index
 
   get '/login', to: 'sessions#new', as: 'login'
   post '/login', to: 'sessions#create'
