@@ -1,5 +1,8 @@
 class VolunteersController < ApplicationController
 
+  def index
+
+  end
   def profile
     @volunteer = Volunteer.find(current_volunteer_user.id)
   end
@@ -25,6 +28,5 @@ class VolunteersController < ApplicationController
        params.require(:volunteer).permit(:username, :langauge, :certification, :password)
     end
 
-  end
 
 end
