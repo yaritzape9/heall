@@ -6,6 +6,14 @@ Rails.application.routes.draw do
 
   resources :volunteers
 
+  resources :volunteers do
+    resources :girls do
+      resources :messages, only: [:index]
+    end
+  end
+
+  mount ActionCable.server => '/cable'
+
   get '/login', to: 'sessions#new', as: 'login'
   post '/login', to: 'sessions#create'
   get '/logout', to: 'sessions#delete', as: 'logout'
