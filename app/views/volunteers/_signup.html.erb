@@ -10,11 +10,24 @@
     <%= f.text_field :language, class: 'form-control'%>
   </div>
 
+  <div class="form-group">
+    <%= f.label :certification %>
+    <%= f.file_field :certification, class: 'form-control'%>
+  </div>
+
 
   <div class="form-group">
     <%= f.label :password %>
     <%= f.password_field :password, class: 'form-control'%>
   </div>
 
+  <p>Fill out two areas of expertise</p>
+
+  <%= select_tag 'expertise_1', options_for_select(@expertise_array) %>
+
+  <%= select_tag 'expertise_2', options_for_select(@expertise_array) %>
+
+  <br>
+  <br>
   <%= f.submit 'Sign Up!', class: 'btn btn-primary' %>
 <% end %>

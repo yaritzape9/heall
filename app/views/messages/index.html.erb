@@ -1,6 +1,9 @@
 <p>Chat</p>
 <% if session[:type] == "volunteer" %>
   <p> You are talking to <%= @girl.username %>, who is <%= @girl.age %> years old and speaks primarily <%= @girl.language %>.
+    <% if  @girl.preferences.last %>
+       She is interested in talking about <%= @girl.preferences.last.name %>
+    <% end %>
 <% else %>
   <p> You are talking to <%= @volunteer.username %>, who is specialized in <%= @volunteer.expertises.first.name %> and <%= @volunteer.expertises.last.name %> and speaks primarily <%= @volunteer.language %>.
 <% end %>

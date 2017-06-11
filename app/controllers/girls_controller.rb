@@ -23,6 +23,7 @@ class GirlsController < ApplicationController
     def new_heally
       match = find_volunteer(params[:expertise])
       @girl = Girl.find(current_girl_user.id)
+      GirlExpertise.create(girl:@girl, expertise: Expertise.find_by(name:params[:expertise]))
       GirlVolunteer.create(girl_id: @girl.id, volunteer_id: match.volunteer_id)
       redirect_to "/volunteers/#{match.volunteer_id}/girls/#{@girl.id}/messages"
     end
@@ -34,7 +35,7 @@ class GirlsController < ApplicationController
     end
 
     def find_volunteer(expertise)
-      VolunteerExpertise.where(expertise: Expertise.find_by(name: expertise)).first
+      VolunteerExpertise.where(expertise: Expertise.find_by(name: expertise)).sample
     end
 
 end
