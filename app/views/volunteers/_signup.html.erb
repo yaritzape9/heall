@@ -1,4 +1,9 @@
-<%= form_for @volunteer do |f| %>
+
+<div class="login-page">
+
+<%= form_for @volunteer,  :class => "register-form" do |f| %>
+<div class="form">
+
 
   <div class="form-group">
     <%= f.label :username %>
@@ -20,13 +25,16 @@
     <%= f.password_field :password, class: 'form-control'%>
   </div>
 
-  <p>Fill out two areas of expertise</p>
+  <p>Chose two areas of expertise</p>
 
   <%= select_tag 'expertise_1', options_for_select(@expertise_array) %>
 
+<br>
   <%= select_tag 'expertise_2', options_for_select(@expertise_array) %>
 
   <br>
   <br>
   <%= f.submit 'Sign Up!', class: 'btn btn-primary' %>
 <% end %>
+</div>
+</div>
