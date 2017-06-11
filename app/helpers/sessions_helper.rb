@@ -8,6 +8,9 @@ module SessionsHelper
     current_user ||= Volunteer.find(session[:volunteer_id]) if session[:volunteer_id]
   end
 
+  def current_user
+    Girl.find(session[:girl_id]) if session[:girl_id] ||= Volunteer.find(session[:volunteer_id]) if session[:volunteer_id]
+  end
   # Logs in the given user.
   def log_in_girl(girl)
     session[:girl_id] = girl.id
