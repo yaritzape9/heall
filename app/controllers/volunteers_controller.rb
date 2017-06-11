@@ -1,10 +1,23 @@
 class VolunteersController < ApplicationController
 
   def index
-
   end
-  def profile
+
+  def show
+    EasyTranslate.api_key = ENV['TRANSLATION_API']
     @volunteer = Volunteer.find(current_volunteer_user.id)
+    # EasyTranslate.translate('Hola, mundo', :from => :spanish, :to => :en) # => "Hello, world"
+    detect = EasyTranslate.detect "Hola Como Estas"
+    sent_langauge = EasyTranslate::LANGUAGES[detect]
+    base_language = IsoCountryCodes.search_by_name(@volunteer.language.downcase)
+    p EasyTranslate.translate('Hola, mundo', from: "#{sent_langauge}", to: "#{base_language}")
+    # if(sent_langauge == @volunteer.language.downcase)
+    #   p "They are the same"
+    # else
+    #   # EasyTranslate.translate("#{bodytext}"), from: "#{sent_langauge}", to: "#{@volunteer.language.downcase}"
+    #   p "they are not the same"
+    # end
+
   end
 
   def new
@@ -14,8 +27,8 @@ class VolunteersController < ApplicationController
   def create
     @volunteer = Volunteer.new(volunteer_params)
       if @volunteer.save
-        log_in @volunteer
-        redirect_to "/volunteers/#{@volunteer.id}/profile"
+        log_in_volunteer @volunteer
+        redirect_to "/volunteers/#{@volunteer.id}"
       else
         flash[:danger] = "Error creating a new instance of yourself!"
         render 'new'
@@ -25,7 +38,7 @@ class VolunteersController < ApplicationController
     private
 
     def volunteer_params
-       params.require(:volunteer).permit(:username, :langauge, :certification, :password)
+       params.require(:volunteer).permit(:username, :language, :password)
     end
 
 
