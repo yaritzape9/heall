@@ -7,10 +7,10 @@ end
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
+gem 'faker'
 gem 'rails', '~> 5.1.1'
 gem 'google-translate'
 gem 'easy_translate'
-gem 'iso-639'
 gem 'dotenv-rails', groups: [:development, :test]
 gem "paperclip", "~> 5.0.0.beta1"
 # Use postgresql as the database for Active Record

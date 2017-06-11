@@ -19,11 +19,14 @@ class VolunteersController < ApplicationController
 
   def new
     @volunteer = Volunteer.new
+    @expertise_array = ["Safe Sex", "STDs", "Pregnant", "Puberty", "Rape Prevention", "Mental Health"]
   end
 
   def create
     @volunteer = Volunteer.new(volunteer_params)
       if @volunteer.save
+        VolunteerExpertise.create(volunteer: @volunteer, expertise: Expertise.find_or_create_by(name: params[:expertise_1]))
+        VolunteerExpertise.create(volunteer: @volunteer, expertise: Expertise.find_or_create_by(name: params[:expertise_2]))
         volunteer?("volunteer")
         log_in_volunteer @volunteer
         redirect_to "/volunteers/#{@volunteer.id}"

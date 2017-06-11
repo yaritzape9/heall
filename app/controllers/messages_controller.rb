@@ -8,7 +8,7 @@ class MessagesController < ApplicationController
   end
 
   def create
-    p "*" * 30
+    @type_user = session[:type]
     if @type_user == "volunteer"
       volunteer_owner = true
     else
@@ -39,9 +39,7 @@ class MessagesController < ApplicationController
     @girl = Girl.find(params[:girl_id])
     @volunteer = Volunteer.find(params[:volunteer_id])
     messages = Message.where(girl: @girl, volunteer: @volunteer)
-    p "THE MESSAGES"
     messages.each do |message|
-      i += 1
       if @type_user == "volunteer"
         if message.volunteer_owner == true
           hashed_message[message.message] = @volunteer.username

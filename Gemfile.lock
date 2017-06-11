@@ -75,6 +75,8 @@ GEM
       thread_safe
     erubi (1.6.0)
     execjs (2.7.0)
+    faker (1.7.3)
+      i18n (~> 0.5)
     ffi (1.9.18)
     globalid (0.4.0)
       activesupport (>= 4.2.0)
@@ -83,7 +85,6 @@ GEM
       resource_accessor (~> 1.2)
       thor (~> 0.19)
     i18n (0.8.4)
-    iso-639 (0.2.8)
     jbuilder (2.7.0)
       activesupport (>= 4.2.0)
       multi_json (>= 1.2)
@@ -211,8 +212,8 @@ DEPENDENCIES
   coffee-rails (~> 4.2)
   dotenv-rails
   easy_translate
+  faker
   google-translate
-  iso-639
   jbuilder (~> 2.5)
   jquery-rails
   listen (>= 3.0.5, < 3.2)
