@@ -9,7 +9,8 @@ class VolunteersController < ApplicationController
     # EasyTranslate.translate('Hola, mundo', :from => :spanish, :to => :en) # => "Hello, world"
     detect = EasyTranslate.detect "Hola Como Estas"
     sent_langauge = EasyTranslate::LANGUAGES[detect]
-    p EasyTranslate.translate('Hola, mundo', from: "#{sent_langauge}", to: "en") 
+    base_language = IsoCountryCodes.search_by_name(@volunteer.language.downcase)
+    p EasyTranslate.translate('Hola, mundo', from: "#{sent_langauge}", to: "#{base_language}")
     # if(sent_langauge == @volunteer.language.downcase)
     #   p "They are the same"
     # else
