@@ -25,7 +25,6 @@ class MessagesController < ApplicationController
   end
 
   def main_talk
-    current_volunteer_user = Volunteer.find(params[:volunteer_id])
     render fake_talk
   end
 
