@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  volunteer: one
+  expertise: one
+
+two:
+  volunteer: two
+  expertise: two
