@@ -1,8 +1,20 @@
 <p>Chat</p>
+<% if session[:type] == "volunteer" %>
+  <p> You are talking to <%= @girl.username %>, who is <%= @girl.age %> years old and speaks primarily <%= @girl.language %>.
+<% else %>
+  <p> You are talking to <%= @volunteer.username %>, who is specialized in <%= @volunteer.expertises.first.name %> and <%= @volunteer.expertises.last.name %> and speaks primarily <%= @volunteer.language %>.
+<% end %>
 
-<%= @current_user %>
+<div id='messages'>
+<%= render partial: "message_list", layout: false, locals: {message: @all_messages} %>
 
-<div id='messages'></div>
+
+</div>
 <br/><br/>
 
-<%= text_field_tag :body, '', id: 'chat-speak' %>
+<div id='chat-speak'>
+  <p id="path", hidden><%= volunteer_girl_messages_path %></p>
+  <%= form_for @message, url: volunteer_girl_messages_path do |f| %>
+      <%= text_field_tag :message %>
+  <% end %>
+</div>

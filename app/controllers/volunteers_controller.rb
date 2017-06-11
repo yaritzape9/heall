@@ -4,7 +4,6 @@ class VolunteersController < ApplicationController
   end
 
   def show
-    EasyTranslate.api_key = ENV['TRANSLATION_API']
     @volunteer = Volunteer.find(current_volunteer_user.id)
     # EasyTranslate.translate('Hola, mundo', :from => :spanish, :to => :en) # => "Hello, world"
     detect = EasyTranslate.detect "Hola Como Estas"
@@ -16,7 +15,6 @@ class VolunteersController < ApplicationController
     #   # EasyTranslate.translate("#{bodytext}"), from: "#{sent_langauge}", to: "#{@volunteer.language.downcase}"
     #   p "they are not the same"
     # end
-
   end
 
   def new
@@ -26,6 +24,7 @@ class VolunteersController < ApplicationController
   def create
     @volunteer = Volunteer.new(volunteer_params)
       if @volunteer.save
+        volunteer?("volunteer")
         log_in_volunteer @volunteer
         redirect_to "/volunteers/#{@volunteer.id}"
       else

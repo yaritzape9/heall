@@ -4,7 +4,7 @@ class CreateMessages < ActiveRecord::Migration[5.1]
       t.references :girl, foreign_key: true
       t.references :volunteer, foreign_key: true
       t.string :message
-      t.integer :speaker
+      t.boolean :volunteer_owner
 
       t.timestamps
     end

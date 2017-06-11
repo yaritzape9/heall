@@ -8,13 +8,14 @@ Rails.application.routes.draw do
 
   resources :volunteers do
     resources :girls do
-      resources :messages, only: [:index]
+      resources :messages, only: [:index, :create]
     end
   end
   post '/languages', to: 'users#set_language', as: 'languages'
   mount ActionCable.server => '/cable'
+  post '/new-heally', to: 'girls#new_heally'
 
-  get '/login', to: 'sessions#new', as: 'login'
-  post '/login', to: 'sessions#create'
-  get '/logout', to: 'sessions#delete', as: 'logout'
+  get    'login'   => 'sessions#new'
+  post   'login'   => 'sessions#create'
+  get 'logout'  => 'sessions#destroy'
 end

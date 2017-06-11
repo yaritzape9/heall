@@ -2,5 +2,11 @@
 <h2 style="color:white;display:inline-block;margin: 25px;"> Welcome <%= @volunteer.username %></h2>
 <label style="display:inline-block; padding-top:5px;margin-top: 20px;float:right;" class="switch">
   <input type="checkbox">
-  <div class="slider round">On</div>
+  <div class="slider round"></div>
 </label>
+
+<% @volunteer.girls.each do |girl| %>
+  <% if  Message.where(girl_id: girl.id, volunteer_id: @volunteer.id).last.created_at%>
+    <p><a href="/volunteers/<%=@volunteer.id%>/girls/<%=girl.id%>/messages">Talk to <%= girl.username %></a><small> Last talk at <%= Message.where(girl_id: girl.id, volunteer_id: @volunteer.id).last.created_at.strftime("%a, %b %d at %I:%M")%></small></p>
+  <% end %>
+<% end %>
