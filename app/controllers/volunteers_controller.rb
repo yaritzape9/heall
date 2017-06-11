@@ -22,7 +22,7 @@ class VolunteersController < ApplicationController
     private
 
     def volunteer_params
-       params.require(:volunteer).permit(:name, :age, :language, :password)
+       params.require(:volunteer).permit(:username, :langauge, :certification, :password)
     end
 
 end
