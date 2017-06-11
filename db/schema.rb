@@ -53,7 +53,7 @@ ActiveRecord::Schema.define(version: 20170611023954) do
     t.bigint "girl_id"
     t.bigint "volunteer_id"
     t.string "message"
-    t.integer "speaker"
+    t.boolean "volunteer_owner"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["girl_id"], name: "index_messages_on_girl_id"
