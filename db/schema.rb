@@ -72,6 +72,10 @@ ActiveRecord::Schema.define(version: 20170611023954) do
   create_table "volunteers", force: :cascade do |t|
     t.string "username"
     t.string "language"
+    t.string "certification_file_name"
+    t.string "certification_content_type"
+    t.integer "certification_file_size"
+    t.datetime "certification_updated_at"
     t.string "password_digest"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
