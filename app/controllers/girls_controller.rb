@@ -1,9 +1,5 @@
 class GirlsController < ApplicationController
 
-  def profile
-    @girl = Girl.find(current_girl_user.id)
-  end
-
   def new
     @girl = Girl.new
   end
@@ -11,18 +7,22 @@ class GirlsController < ApplicationController
   def create
     @girl = Girl.new(girl_params)
       if @girl.save
-        log_in @girl
-        redirect_to "/girls/#{@girl.id}/profile"
+        log_in_girl @girl
+        redirect_to "/girls/#{@girl.id}"
       else
         flash[:danger] = "Error creating a new instance of yourself!"
         render 'new'
       end
     end
 
+    def show
+      @girl = Girl.find(current_girl_user.id)
+    end
+
     private
 
     def girl_params
-       params.require(:girl).permit(:name, :age, :language, :keyword, :password)
+       params.require(:girl).permit(:username, :age, :language, :keyword, :password)
     end
 
 end
