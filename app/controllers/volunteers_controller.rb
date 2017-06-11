@@ -25,4 +25,6 @@ class VolunteersController < ApplicationController
        params.require(:volunteer).permit(:username, :langauge, :certification, :password)
     end
 
+  end
+
 end
