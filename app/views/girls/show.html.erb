@@ -17,8 +17,7 @@ Hey <%= @girl.username %>!
 
 <h5> Need more help? </h5>
 
-
-
+<br>
 <form action="/new-heally" method="POST">
   <select name="expertise">
     <option value="Pregnancy Prevention" name="Pregnancy Prevention">Pregnancy Prevention</option>
@@ -28,5 +27,9 @@ Hey <%= @girl.username %>!
     <option value="Rape Prevention" name="Rape Prevention">Rape Prevention</option>
     <option value="Mental Health" name="Mental Health">Mental Health</option>
   </select>
+
+  <br>
+  <br>
+  
   <button type="submit">Find your next Ally</button>
 </form>
