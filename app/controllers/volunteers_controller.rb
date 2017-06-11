@@ -5,18 +5,21 @@ class VolunteersController < ApplicationController
 
   def show
     EasyTranslate.api_key = ENV['TRANSLATION_API']
+    languages = {
+      'english' => 'en',
+      'spanish' => 'spa',
+      'portuguese' => 'pt',
+      'arabic' => 'ar'
+    }
     @volunteer = Volunteer.find(current_volunteer_user.id)
-    # EasyTranslate.translate('Hola, mundo', :from => :spanish, :to => :en) # => "Hello, world"
-    detect = EasyTranslate.detect "Hola Como Estas"
-    sent_langauge = EasyTranslate::LANGUAGES[detect]
-    base_language = IsoCountryCodes.search_by_name(@volunteer.language.downcase)
-    p EasyTranslate.translate('Hola, mundo', from: "#{sent_langauge}", to: "#{base_language}")
-    # if(sent_langauge == @volunteer.language.downcase)
-    #   p "They are the same"
-    # else
-    #   # EasyTranslate.translate("#{bodytext}"), from: "#{sent_langauge}", to: "#{@volunteer.language.downcase}"
-    #   p "they are not the same"
-    # end
+
+    base_language = languages[@volunteer.language]
+    detect = languages[current_girl_user.language]
+    # detect = EasyTranslate.detect "Hola Como Estas"
+
+    if(@volunteer.language != current_girl_user.language)
+      EasyTranslate.translate("this is english", from: "#{detect}", to: "#{base_language}")
+    end
 
   end
 

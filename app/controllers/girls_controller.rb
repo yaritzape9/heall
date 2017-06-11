@@ -16,7 +16,23 @@ class GirlsController < ApplicationController
     end
 
     def show
+      EasyTranslate.api_key = ENV['TRANSLATION_API']
+      languages = {
+        'english' => 'en',
+        'spanish' => 'spa',
+        'portuguese' => 'pt',
+        'arabic' => 'ar'
+      }
       @girl = Girl.find(current_girl_user.id)
+
+      base_language = languages[@girl.language]
+      detect = languages[current_volunteer_user.language]
+      # detect = EasyTranslate.detect "Hola Como Estas"
+      # sent_langauge = EasyTranslate::LANGUAGES[detect]
+
+      if(@girl.language.downcase != current_volunteer_user.language)
+        EasyTranslate.translate("Hola", from: "#{detect}", to: "#{base_language}")
+      end
     end
 
     private

@@ -10,7 +10,7 @@ end
 gem 'rails', '~> 5.1.1'
 gem 'google-translate'
 gem 'easy_translate'
-gem 'iso_country_codes'
+gem 'iso-639'
 gem 'dotenv-rails', groups: [:development, :test]
 gem "paperclip", "~> 5.0.0.beta1"
 # Use postgresql as the database for Active Record
