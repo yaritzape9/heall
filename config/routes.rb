@@ -11,7 +11,7 @@ Rails.application.routes.draw do
       resources :messages, only: [:index]
     end
   end
-
+  post '/languages', to: 'users#set_language', as: 'languages'
   mount ActionCable.server => '/cable'
 
   get '/login', to: 'sessions#new', as: 'login'
