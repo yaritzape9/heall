@@ -7,6 +7,9 @@ Hey <%= @girl.username %>!
       <% if (Message.where(girl_id: @girl.id, volunteer_id: volunteer.id).last.created_at) %>
         <small>Last talk at <%= Message.where(girl_id: @girl.id, volunteer_id: volunteer.id).last.created_at %>
         </small>
+      <% else %>
+      <small>You guys didn't start your conversation! What about telling your Ally about your hobbies to break the ice? :)
+      </small>
       <% end %>
   <% end %>
 <% end %>
