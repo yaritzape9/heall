@@ -21,8 +21,22 @@
 					<div id="intro">
 						<h1>Heall </h1>
 						<p>A Health Ally!</p>
+						<div class="dropdown">
+							<button class="dropbtn">LANGUAGE</button>
+								<div class="dropdown-content">
+									<li class="drop">
+										<%= link_to t('.english'), languages_path(lang_pref: 'en'), method: :post %>
+										<!-- <a href="/languages" class="lang-pref-opt"><%= t '.english' %></a> -->
+									</li>
+
+									<li class="drop">
+										<%= link_to t('.spanish'), languages_path(lang_pref: 'es'), method: :post %>
+										<!-- <a href="/languages" class="lang-pref-opt"><%= t '.spanish' %></a> -->
+									</li>
+								</div>
+						</div>
 						<ul class="actions">
-							<li><a href="#header" class="button icon solo fa-arrow-down scrolly"></a></li>
+							<li><a href="#header"></a></li>
 						</ul>
 					</div>
 
