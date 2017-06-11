@@ -1,8 +1,7 @@
 class GirlsController < ApplicationController
 
   def profile
-    @girl = Girl.find(current_user.id)
-    @posts = @user.posts.order("created_at DESC")
+    @girl = Girl.find(current_girl_user.id)
   end
 
   def new
@@ -23,7 +22,7 @@ class GirlsController < ApplicationController
     private
 
     def girl_params
-       params.require(:user).permit(:name, :email, :password)
+       params.require(:girl).permit(:name, :age, :language, :keyword, :password)
     end
 
 end
