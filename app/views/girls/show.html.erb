@@ -1,5 +1,6 @@
-Hey <%= @girl.username %>!
-:)
+<h2>Hey <%= @girl.username %>!</h2>
+<p>Come talk to professional who can help solve your questions!
+</p>
 
 <% @girl.volunteers.each do |volunteer| %>
   <% if Message.where(girl_id: @girl.id, volunteer_id: volunteer.id).last %>
@@ -15,18 +16,20 @@ Hey <%= @girl.username %>!
 <% end %>
 
 
-<h5> Need more help? </h5>
+<div class="padding:103px;">
+<h3 style="margin:22px"> Need more help? </h3>
 
-
-
-<form action="/new-heally" method="POST">
-  <select name="expertise">
-    <option value="Pregnancy Prevention" name="Pregnancy Prevention">Pregnancy Prevention</option>
-    <option value="STDs" name="STDs">STDs</option>
-    <option value="Pregnant" name="Pregnant">Pregnant</option>
-    <option value="Puberty" name="Puberty">Puberty</option>
-    <option value="Rape Prevention" name="Rape Prevention">Rape Prevention</option>
-    <option value="Mental Health" name="Mental Health">Mental Health</option>
-  </select>
-  <button type="submit">Find your next Ally</button>
-</form>
+  <form action="/new-heally" method="POST" style="margin:22px">
+    <select name="expertise">
+      <option value="Pregnancy Prevention" name="Pregnancy Prevention">Pregnancy Prevention</option>
+      <option value="STDs" name="STDs">STDs</option>
+      <option value="Pregnant" name="Pregnant">Pregnant</option>
+      <option value="Puberty" name="Puberty">Puberty</option>
+      <option value="Rape Prevention" name="Rape Prevention">Rape Prevention</option>
+      <option value="Mental Health" name="Mental Health">Mental Health</option>
+    </select>
+    <br>
+    <br>
+    <button type="submit">Find your next Ally</button>
+  </form>
+</div>
