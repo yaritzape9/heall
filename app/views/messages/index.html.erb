@@ -1,8 +1,14 @@
 <p>Chat</p>
 
-<%= @current_user %>
+<div id='messages'>
+<%= render partial: "message_list", layout: false, locals: {message: @all_messages} %>
 
-<div id='messages'></div>
+</div>
 <br/><br/>
 
-<%= text_field_tag :body, '', id: 'chat-speak' %>
+<div id='chat-speak'>
+  <p id="path", hidden><%= volunteer_girl_messages_path %></p>
+  <%= form_for @message, url: volunteer_girl_messages_path do |f| %>
+      <%= text_field_tag :message %>
+  <% end %>
+</div>

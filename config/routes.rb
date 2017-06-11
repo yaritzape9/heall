@@ -8,7 +8,7 @@ Rails.application.routes.draw do
 
   resources :volunteers do
     resources :girls do
-      resources :messages, only: [:index]
+      resources :messages, only: [:index, :create]
     end
   end
 
