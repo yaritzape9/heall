@@ -4,7 +4,7 @@
   <%= flash[:danger] %>
 <% end %>
 <div class="login-page" style="padding: 4% 0 0;">
-  <div class="form" style=" margin: -0.5rem 0 2rem -1.5rem; >
+  <div class="form" style=" margin: -0.5rem 0 2rem -1.5rem;" >
     <%= form_for(:session, url: login_path, :class => "register-form") do |f| %>
       <%= f.label :username %>
       <%= f.text_field :username, class: 'form-control' %>

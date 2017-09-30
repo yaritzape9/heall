@@ -17,7 +17,8 @@ class SessionsController < ApplicationController
         flash[:danger] = 'Invalid username/password combination'
         render 'new'
       end
-    elsif girl
+    end
+    if girl
       if girl.authenticate(params[:session][:password])
         volunteer?("girl")
         log_in_girl girl
